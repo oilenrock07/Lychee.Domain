@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Lychee.Domain</id>
+    <version>1.0</version>
+    <title>Lychee.Domain</title>
+    <authors>Cornelio Cawicaan Jr.</authors>
+    <owners>Cornelio Cawicaan Jr.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>Domain Logic of Lychee Projects</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>Lychee Domain</tags>
+    <dependencies>
+      <dependency id="Lychee.Entities" version="1.0" />
+      <dependency id="Lychee.Infrastructure" version="1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\debug\Lychee.Domain.dll" target="lib\net40" />
+  </files>
+</package>
