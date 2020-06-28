@@ -2,19 +2,20 @@
 <package >
   <metadata>
     <id>Lychee.Domain</id>
-    <version>1.0</version>
+    <version>1.0.6</version>
     <title>Lychee.Domain</title>
     <authors>Cornelio Cawicaan Jr.</authors>
     <owners>Cornelio Cawicaan Jr.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <description>Domain Logic of Lychee Projects</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Inherit the setting to repository</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>Lychee Domain</tags>
     <dependencies>
       <dependency id="Lychee.Entities" version="1.0" />
       <dependency id="Lychee.Infrastructure" version="1.0" />
+      <dependency id="ValueInjecter" version="3.2" />
     </dependencies>
   </metadata>
   <files>

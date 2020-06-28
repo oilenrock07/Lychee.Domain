@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Lychee.Domain.Interfaces;
 using Lychee.Entities.Entities;
+using Lychee.Infrastructure;
 using Lychee.Infrastructure.Interfaces;
 
-namespace Lychee.Scrapper.Repository.Repositories
+namespace Lychee.Domain.Repositories
 {
-    public class SettingRepository : ISettingRepository
+    public class SettingRepository : Repository<Setting>, ISettingRepository
     {
-        private readonly IRepository<Setting> _settingRepository;
         protected virtual List<Setting> _settings { get; set; }
 
-        public SettingRepository(IRepository<Setting> settingRepository)
+        public SettingRepository(IDatabaseFactory databaseFactory) : base(databaseFactory.GetContext())
         {
-            _settingRepository = settingRepository;
+
         }
 
         public virtual ICollection<Setting> GetAllSettings()
         {
             if (_settings != null) return _settings;
-            _settings = _settingRepository.GetAll().ToList();
+
+            _settings = GetAll().ToList();
             return _settings;
         }
 
