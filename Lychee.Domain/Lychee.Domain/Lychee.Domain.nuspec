@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Lychee.Domain</id>
-    <version>1.0.6</version>
+    <version>1.1.0</version>
     <title>Lychee.Domain</title>
     <authors>Cornelio Cawicaan Jr.</authors>
     <owners>Cornelio Cawicaan Jr.</owners>
@@ -15,6 +15,7 @@
     <dependencies>
       <dependency id="Lychee.Entities" version="1.0" />
       <dependency id="Lychee.Infrastructure" version="1.0" />
+      <dependency id="Lychee.Caching" version="1.0" />
       <dependency id="ValueInjecter" version="3.2" />
     </dependencies>
   </metadata>

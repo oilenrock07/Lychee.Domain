@@ -8,6 +8,9 @@ namespace Lychee.Domain.Interfaces
     {
         ICollection<Setting> GetAllSettings();
         Setting GetSetting(string key);
+
+        Setting GetSetting(int id);
         T GetSettingValue<T>(string key);
+        void InvalidateCache();
     }
 }
