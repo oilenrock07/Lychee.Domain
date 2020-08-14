@@ -23,19 +23,19 @@ namespace Lychee.Domain.Repositories
 
         public virtual ICollection<Setting> GetAllSettings()
         {
-            var settings = _cache.GetOrAdd(_cacheKey, GetAll, TimeSpan.FromDays(1));
+            var settings = _cache.GetOrAdd(_cacheKey, () => GetAll().ToList(), TimeSpan.FromDays(1));
             return settings.ToList();
         }
 
         public virtual Setting GetSetting(string key)
         {
-            var settings = _cache.GetOrAdd(_cacheKey, GetAll, TimeSpan.FromDays(1));
+            var settings = GetAllSettings();
             return settings.FirstOrDefault(x => x.Key == key);
         }
 
         public virtual Setting GetSetting(int id)
         {
-            var settings = _cache.GetOrAdd(_cacheKey, GetAll, TimeSpan.FromDays(1));
+            var settings = GetAllSettings();
             return settings.FirstOrDefault(x => x.SettingId == id);
         }
 
@@ -46,6 +46,15 @@ namespace Lychee.Domain.Repositories
                 return default;
 
             return (T) Convert.ChangeType(setting.Value, typeof(T));
+        }
+
+        public virtual T GetSettingValue<T>(string key, T defaultValue)
+        {
+            var setting = GetSetting(key);
+            if (setting == null)
+                return defaultValue;
+
+            return (T)Convert.ChangeType(setting.Value, typeof(T));
         }
 
         public void InvalidateCache()

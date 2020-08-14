@@ -29,15 +29,26 @@ namespace Lychee.Domain.Services
             return _settingRepository.GetSetting(id);
         }
 
+        public virtual T GetSettingValue<T>(string key)
+        {
+            return _settingRepository.GetSettingValue<T>(key);
+        }
+
+        public virtual T GetSettingValue<T>(string key, T defaultValue)
+        {
+            return _settingRepository.GetSettingValue(key, defaultValue);
+        }
+
         public virtual void UpdateValue(int id, string value)
         {
             var setting = _settingRepository.GetById(id);
             setting.Value = value;
 
-            _settingRepository.Update(setting);
+            _settingRepository.Attach(setting);
+            setting.Value = value;
             _settingRepository.SaveChanges();
 
-            _settingRepository.InvalidateCache();
+            _settingRepository.InvalidateCache(); //find a smart way not to load all the settings again
         }
 
         public virtual void Update(Setting model)
@@ -45,10 +56,11 @@ namespace Lychee.Domain.Services
             var setting = _settingRepository.GetById(model.SettingId);
             setting.InjectFrom(model);
 
-            _settingRepository.Update(setting);
+            _settingRepository.Attach(setting);
+            setting.InjectFrom(model);
             _settingRepository.SaveChanges();
 
-            _settingRepository.InvalidateCache();
+            _settingRepository.InvalidateCache(); //find a smart way not to load all the settings again
         }
 
         public virtual void Delete(int id)
@@ -57,7 +69,7 @@ namespace Lychee.Domain.Services
             _settingRepository.Delete(setting);
             _settingRepository.SaveChanges();
 
-            _settingRepository.InvalidateCache();
+            _settingRepository.InvalidateCache(); //find a smart way not to load all the settings again
         }
     }
 }

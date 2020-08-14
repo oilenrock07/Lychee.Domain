@@ -11,6 +11,7 @@ namespace Lychee.Domain.Interfaces
 
         Setting GetSetting(int id);
         T GetSettingValue<T>(string key);
+        T GetSettingValue<T>(string key, T defaultValue);
         void InvalidateCache();
     }
 }
